@@ -1,0 +1,249 @@
+Запуск 1
+ Image counter-test-1795353189-96346-app Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 534B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 277B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/python:3.13-slim
+#3 DONE 0.5s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [1/6] FROM docker.io/library/python:3.13-slim@sha256:e48f59cdba69a3cbd9ed2cf0f348d90d45a8d350d98134cf1070bc106ee9ed90
+#5 resolve docker.io/library/python:3.13-slim@sha256:e48f59cdba69a3cbd9ed2cf0f348d90d45a8d350d98134cf1070bc106ee9ed90 done
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 94B done
+#6 DONE 0.0s
+
+#7 [2/6] WORKDIR /app
+#7 CACHED
+
+#8 [5/6] COPY app/app.py .
+#8 CACHED
+
+#9 [4/6] RUN pip install --no-cache-dir -r requirements.txt
+#9 CACHED
+
+#10 [3/6] COPY app/requirements.txt .
+#10 CACHED
+
+#11 [6/6] RUN mkdir /data && chown 10001:10001 /data
+#11 CACHED
+
+#12 exporting to image
+#12 exporting layers done
+#12 exporting manifest sha256:8593d9bcacb83d7bdc0ba5eedf442b5478870ae09eae6e502fcf9f797a397b1b done
+#12 exporting config sha256:81dbdb8a0aa06723ba3e1219f3ecaba5b601b2a567f2a10b38df933e4315abc1 done
+#12 exporting attestation manifest sha256:b6c0328382ef0875b6acd7f4ba45bc7a78740ee5cdcccfc71dd6b323997fefaf done
+#12 exporting manifest list sha256:9b66b0f9236d4f2b9b5d5387d2c771ba88a28a0bb7766efac988294e3d8fb7b0 done
+#12 naming to docker.io/library/counter-test-1795353189-96346-app:latest done
+#12 unpacking to docker.io/library/counter-test-1795353189-96346-app:latest done
+#12 DONE 0.0s
+
+#13 resolving provenance for metadata file
+#13 DONE 0.0s
+ Image counter-test-1795353189-96346-app Built 
+ Network counter-test-1795353189-96346_default Creating 
+ Network counter-test-1795353189-96346_default Creating 
+ Volume counter-test-1795353189-96346_redis-data Creating 
+ Volume counter-test-1795353189-96346_redis-data Creating 
+ Volume counter-test-1795353189-96346_redis-data Created 
+ Volume counter-test-1795353189-96346_redis-data Created 
+ Network counter-test-1795353189-96346_default Created 
+ Network counter-test-1795353189-96346_default Created 
+ Container counter-test-1795353189-96346-redis-1 Creating 
+ Container counter-test-1795353189-96346-redis-1 Created 
+ Container counter-test-1795353189-96346-app-1 Creating 
+ Container counter-test-1795353189-96346-app-1 Created 
+ Container counter-test-1795353189-96346-redis-1 Starting 
+ Container counter-test-1795353189-96346-redis-1 Started 
+ Container counter-test-1795353189-96346-redis-1 Waiting 
+ Container counter-test-1795353189-96346-redis-1 Healthy 
+ Container counter-test-1795353189-96346-app-1 Starting 
+ Container counter-test-1795353189-96346-app-1 Started 
+ Container counter-test-1795353189-96346-redis-1 Waiting 
+ Container counter-test-1795353189-96346-app-1 Waiting 
+ Container counter-test-1795353189-96346-redis-1 Healthy 
+ Container counter-test-1795353189-96346-app-1 Healthy 
+{"greeting": "Hello, Docker!", "count": 0, "hostname": "8424feb92639", "storage": "redis"}
+Начальный счётчик равен 0
+{"greeting": "Hello, Docker!", "count": 1, "hostname": "8424feb92639", "storage": "redis"}
+{"greeting": "Hello, Docker!", "count": 2, "hostname": "8424feb92639", "storage": "redis"}
+ Container counter-test-1795353189-96346-app-1 Recreate 
+ Container counter-test-1795353189-96346-app-1 Recreated 
+ Container counter-test-1795353189-96346-app-1 Starting 
+ Container counter-test-1795353189-96346-app-1 Started 
+ Container counter-test-1795353189-96346-app-1 Waiting 
+ Container counter-test-1795353189-96346-app-1 Healthy 
+{"greeting": "Hello, Docker!", "count": 2, "hostname": "81ede53bd1a6", "storage": "redis"}
+После пересоздания app счётчик равен 2
+ Container counter-test-1795353189-96346-redis-1 Stopping 
+ Container counter-test-1795353189-96346-redis-1 Stopped 
+GET /healthz — получен 200, ожидался 200
+GET /readyz — получен 503, ожидался 503
+POST /increment — получен 503, ожидался 503
+ Container counter-test-1795353189-96346-redis-1 Starting 
+ Container counter-test-1795353189-96346-redis-1 Started 
+{"status": "ready", "storage": "redis"}
+{"greeting": "Hello, Docker!", "count": 2, "hostname": "81ede53bd1a6", "storage": "redis"}
+{"greeting": "Hello, Docker!", "count": 3, "hostname": "81ede53bd1a6", "storage": "redis"}
+ Container counter-test-1795353189-96346-app-1 Stopping 
+ Container counter-test-1795353189-96346-app-1 Stopped 
+ Container counter-test-1795353189-96346-redis-1 Stopping 
+ Container counter-test-1795353189-96346-redis-1 Stopped 
+ Container counter-test-1795353189-96346-redis-run-e314c1005afd Creating 
+ Container counter-test-1795353189-96346-redis-run-e314c1005afd Created 
+./
+./dump.rdb
+./appendonlydir/
+./appendonlydir/appendonly.aof.1.base.rdb
+./appendonlydir/appendonly.aof.1.incr.aof
+./appendonlydir/appendonly.aof.manifest
+Резервная копия сохранена в backups/counter-test-1795353189-96346.tar
+ Container counter-test-1795353189-96346-redis-1 Stopping 
+ Container counter-test-1795353189-96346-app-1 Stopping 
+ Container counter-test-1795353189-96346-redis-1 Stopped 
+ Container counter-test-1795353189-96346-redis-1 Removing 
+ Container counter-test-1795353189-96346-app-1 Stopped 
+ Container counter-test-1795353189-96346-app-1 Removing 
+ Container counter-test-1795353189-96346-redis-1 Removed 
+ Container counter-test-1795353189-96346-app-1 Removed 
+ Volume counter-test-1795353189-96346_redis-data Removing 
+ Network counter-test-1795353189-96346_default Removing 
+ Volume counter-test-1795353189-96346_redis-data Removed 
+ Image counter-test-1795353189-96346-app:latest Removing 
+ Image counter-test-1795353189-96346-app:latest Removed 
+ Network counter-test-1795353189-96346_default Removed 
+Запуск 2
+ Image counter-test-1795353209-96439-app Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 534B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 277B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/python:3.13-slim
+#3 DONE 0.2s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [1/6] FROM docker.io/library/python:3.13-slim@sha256:e48f59cdba69a3cbd9ed2cf0f348d90d45a8d350d98134cf1070bc106ee9ed90
+#5 resolve docker.io/library/python:3.13-slim@sha256:e48f59cdba69a3cbd9ed2cf0f348d90d45a8d350d98134cf1070bc106ee9ed90 done
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 94B done
+#6 DONE 0.0s
+
+#7 [2/6] WORKDIR /app
+#7 CACHED
+
+#8 [3/6] COPY app/requirements.txt .
+#8 CACHED
+
+#9 [4/6] RUN pip install --no-cache-dir -r requirements.txt
+#9 CACHED
+
+#10 [5/6] COPY app/app.py .
+#10 CACHED
+
+#11 [6/6] RUN mkdir /data && chown 10001:10001 /data
+#11 CACHED
+
+#12 exporting to image
+#12 exporting layers done
+#12 exporting manifest sha256:3ac821301adb70a34b1277f84c69d702b385e70cafd27e046fbb9fb8b1af5f41 done
+#12 exporting config sha256:2b7ebc0eb567f4485e1841280b4fb23e882b24ea3b243aec4046e97780a82582 done
+#12 exporting attestation manifest sha256:13292fe2292723e7525f728486f4cb358125f4875efcffc0337c227cb59d68cd done
+#12 exporting manifest list sha256:6e4da1330551bdf5a37998efbcf8b3f4d8076761db36851ba738c33745210d3d done
+#12 naming to docker.io/library/counter-test-1795353209-96439-app:latest done
+#12 unpacking to docker.io/library/counter-test-1795353209-96439-app:latest done
+#12 DONE 0.0s
+
+#13 resolving provenance for metadata file
+#13 DONE 0.0s
+ Image counter-test-1795353209-96439-app Built 
+ Volume counter-test-1795353209-96439_redis-data Creating 
+ Volume counter-test-1795353209-96439_redis-data Creating 
+ Network counter-test-1795353209-96439_default Creating 
+ Network counter-test-1795353209-96439_default Creating 
+ Volume counter-test-1795353209-96439_redis-data Created 
+ Volume counter-test-1795353209-96439_redis-data Created 
+ Network counter-test-1795353209-96439_default Created 
+ Network counter-test-1795353209-96439_default Created 
+ Container counter-test-1795353209-96439-redis-1 Creating 
+ Container counter-test-1795353209-96439-redis-1 Created 
+ Container counter-test-1795353209-96439-app-1 Creating 
+ Container counter-test-1795353209-96439-app-1 Created 
+ Container counter-test-1795353209-96439-redis-1 Starting 
+ Container counter-test-1795353209-96439-redis-1 Started 
+ Container counter-test-1795353209-96439-redis-1 Waiting 
+ Container counter-test-1795353209-96439-redis-1 Healthy 
+ Container counter-test-1795353209-96439-app-1 Starting 
+ Container counter-test-1795353209-96439-app-1 Started 
+ Container counter-test-1795353209-96439-redis-1 Waiting 
+ Container counter-test-1795353209-96439-app-1 Waiting 
+ Container counter-test-1795353209-96439-redis-1 Healthy 
+ Container counter-test-1795353209-96439-app-1 Healthy 
+{"greeting": "Hello, Docker!", "count": 0, "hostname": "87af929edb73", "storage": "redis"}
+Начальный счётчик равен 0
+{"greeting": "Hello, Docker!", "count": 1, "hostname": "87af929edb73", "storage": "redis"}
+{"greeting": "Hello, Docker!", "count": 2, "hostname": "87af929edb73", "storage": "redis"}
+ Container counter-test-1795353209-96439-app-1 Recreate 
+ Container counter-test-1795353209-96439-app-1 Recreated 
+ Container counter-test-1795353209-96439-app-1 Starting 
+ Container counter-test-1795353209-96439-app-1 Started 
+ Container counter-test-1795353209-96439-app-1 Waiting 
+ Container counter-test-1795353209-96439-app-1 Healthy 
+{"greeting": "Hello, Docker!", "count": 2, "hostname": "ee52b6290adf", "storage": "redis"}
+После пересоздания app счётчик равен 2
+ Container counter-test-1795353209-96439-redis-1 Stopping 
+ Container counter-test-1795353209-96439-redis-1 Stopped 
+GET /healthz — получен 200, ожидался 200
+GET /readyz — получен 503, ожидался 503
+POST /increment — получен 503, ожидался 503
+ Container counter-test-1795353209-96439-redis-1 Starting 
+ Container counter-test-1795353209-96439-redis-1 Started 
+{"status": "ready", "storage": "redis"}
+{"greeting": "Hello, Docker!", "count": 2, "hostname": "ee52b6290adf", "storage": "redis"}
+{"greeting": "Hello, Docker!", "count": 3, "hostname": "ee52b6290adf", "storage": "redis"}
+ Container counter-test-1795353209-96439-app-1 Stopping 
+ Container counter-test-1795353209-96439-app-1 Stopped 
+ Container counter-test-1795353209-96439-redis-1 Stopping 
+ Container counter-test-1795353209-96439-redis-1 Stopped 
+ Container counter-test-1795353209-96439-redis-run-075bc8c0b6c0 Creating 
+ Container counter-test-1795353209-96439-redis-run-075bc8c0b6c0 Created 
+./
+./dump.rdb
+./appendonlydir/
+./appendonlydir/appendonly.aof.1.base.rdb
+./appendonlydir/appendonly.aof.1.incr.aof
+./appendonlydir/appendonly.aof.manifest
+Резервная копия сохранена в backups/counter-test-1795353209-96439.tar
+ Container counter-test-1795353209-96439-app-1 Stopping 
+ Container counter-test-1795353209-96439-redis-1 Stopping 
+ Container counter-test-1795353209-96439-app-1 Stopped 
+ Container counter-test-1795353209-96439-app-1 Removing 
+ Container counter-test-1795353209-96439-redis-1 Stopped 
+ Container counter-test-1795353209-96439-redis-1 Removing 
+ Container counter-test-1795353209-96439-redis-1 Removed 
+ Container counter-test-1795353209-96439-app-1 Removed 
+ Volume counter-test-1795353209-96439_redis-data Removing 
+ Network counter-test-1795353209-96439_default Removing 
+ Volume counter-test-1795353209-96439_redis-data Removed 
+ Image counter-test-1795353209-96439-app:latest Removing 
+ Image counter-test-1795353209-96439-app:latest Removed 
+ Network counter-test-1795353209-96439_default Removed 
+Оба запуска прошли успешно

@@ -1,0 +1,57 @@
++-zsh:64> curl -fsS -w '\n' -X POST http://127.0.0.1:8080/increment
+{"greeting": "Hello, Docker!", "count": 1, "hostname": "9c6e2d601ab2", "storage": "redis"}
++-zsh:65> curl -fsS -w '\n' -X POST http://127.0.0.1:8080/increment
+{"greeting": "Hello, Docker!", "count": 2, "hostname": "9c6e2d601ab2", "storage": "redis"}
++-zsh:69> docker compose --env-file .env.example down
+ Container ipr-hw3-app-1 Stopping 
+ Container ipr-hw3-app-1 Stopped 
+ Container ipr-hw3-app-1 Removing 
+ Container ipr-hw3-app-1 Removed 
+ Container ipr-hw3-redis-1 Stopping 
+ Container ipr-hw3-redis-1 Stopped 
+ Container ipr-hw3-redis-1 Removing 
+ Container ipr-hw3-redis-1 Removed 
+ Network ipr-hw3_default Removing 
+ Network ipr-hw3_default Removed 
++-zsh:70> docker compose --env-file .env.example up -d --wait --wait-timeout 60
+ Network ipr-hw3_default Creating 
+ Network ipr-hw3_default Creating 
+ Network ipr-hw3_default Created 
+ Network ipr-hw3_default Created 
+ Container ipr-hw3-redis-1 Creating 
+ Container ipr-hw3-redis-1 Created 
+ Container ipr-hw3-app-1 Creating 
+ Container ipr-hw3-app-1 Created 
+ Container ipr-hw3-redis-1 Starting 
+ Container ipr-hw3-redis-1 Started 
+ Container ipr-hw3-redis-1 Waiting 
+ Container ipr-hw3-redis-1 Healthy 
+ Container ipr-hw3-app-1 Starting 
+ Container ipr-hw3-app-1 Started 
+ Container ipr-hw3-app-1 Waiting 
+ Container ipr-hw3-redis-1 Waiting 
+ Container ipr-hw3-redis-1 Healthy 
+ Container ipr-hw3-app-1 Healthy 
++-zsh:71> curl -fsS -w '\n' http://127.0.0.1:8080/
+{"greeting": "Hello, Docker!", "count": 2, "hostname": "2d8fce87664b", "storage": "redis"}
++-zsh:75> docker compose --env-file .env.example stop redis
+ Container ipr-hw3-redis-1 Stopping 
+ Container ipr-hw3-redis-1 Stopped 
++-zsh:76> url=http://127.0.0.1:8080 
++-zsh:77> curl -sS --max-time 10 -o /dev/null -w 'healthz: %{http_code}\n' http://127.0.0.1:8080/healthz
+healthz: 200
++-zsh:78> curl -sS --max-time 10 -o /dev/null -w 'readyz: %{http_code}\n' http://127.0.0.1:8080/readyz
+readyz: 503
++-zsh:79> curl -sS --max-time 10 -o /dev/null -w 'increment: %{http_code}\n' -X POST http://127.0.0.1:8080/increment
+increment: 503
++-zsh:83> docker compose --env-file .env.example start redis
+ Container ipr-hw3-redis-1 Starting 
+ Container ipr-hw3-redis-1 Started 
++-zsh:84> url=http://127.0.0.1:8080 
++-zsh:85> curl -fsS --max-time 5 --retry 10 --retry-delay 1 http://127.0.0.1:8080/readyz
+{"status": "ready", "storage": "redis"}+-zsh:86> echo
+
++-zsh:87> curl -fsS --max-time 5 -w '\n' http://127.0.0.1:8080/
+{"greeting": "Hello, Docker!", "count": 2, "hostname": "2d8fce87664b", "storage": "redis"}
++-zsh:88> curl -fsS --max-time 5 -w '\n' -X POST http://127.0.0.1:8080/increment
+{"greeting": "Hello, Docker!", "count": 3, "hostname": "2d8fce87664b", "storage": "redis"}
